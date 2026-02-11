@@ -15,7 +15,7 @@ from config import TMDB_API_KEY, TMDB_API_KEYS, POSTER_BASE_URL, setup_logging
 
 # Page Config - MUST BE FIRST STREAMLIT CALL
 st.set_page_config(
-    page_title="CineMatch | Research Portfolio",
+    page_title="Cine Match | Research Portfolio",
     page_icon="🎬",
     layout="wide"
 )
@@ -247,7 +247,7 @@ if movies_df is None:
     st.stop()
 
 # --- SIGMA UI OVERRIDE ---
-st.markdown('<div class="nav-container"><div class="brand">CINEMATCH // PRIMAL</div><div style="font-family:\'JetBrains Mono\'">SYS.VER.4.0.2</div></div>', unsafe_allow_html=True)
+st.markdown('<div class="nav-container"><div class="brand">CINE MATCH // PRIME</div><div style="font-family:\'JetBrains Mono\'">SYS.VER.4.0.2</div></div>', unsafe_allow_html=True)
 
 with st.sidebar:
     st.markdown('<div class="tech-header">SYSTEM CONSOLE</div>', unsafe_allow_html=True)
@@ -282,7 +282,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(["DISCOVERY PROTOCOL", "VECTOR MANIFOLD",
 with tab1:
     st.markdown("""
         <div class="hero-box">
-            <h1 style="font-family:'Outfit'; font-weight:900; font-size:4rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:-2px;">CineMatch <span style="color:#ff3e3e">Prime</span></h1>
+            <h1 style="font-family:'Outfit'; font-weight:900; font-size:4rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:-2px;">Cine Match <span style="color:#ff3e3e">Prime</span></h1>
             <p style="color:#cbd5e0; font-family:'JetBrains Mono'; font-size:1rem;">[INITIATING NEURAL HANDSHAKE...] PREDICTING CINEMATIC ALIGNMENT.</p>
         </div>
     """, unsafe_allow_html=True)
@@ -541,7 +541,7 @@ with tab5:
         <h3 style="margin-top: 0; color: #ff3e3e; font-family: 'Courier New', Courier, monospace;">🔬 RESEARCH METADATA & METHODOLOGY</h3>
         
         <p style="color: #aaa; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem;">
-            This module evaluates the performance of the CineMatch recommendation engine using a controlled experimental setup. 
+            This module evaluates the performance of the Cine Match recommendation engine using a controlled experimental setup. 
             We analyze how different <b>Numerical Vectorization Strategies</b> impact both the accuracy and efficiency of the system.
         </p>
 
