@@ -247,7 +247,7 @@ if movies_df is None:
     st.stop()
 
 # --- SIGMA UI OVERRIDE ---
-st.markdown('<div class="nav-container"><div class="brand">CINE MATCH // PRIME</div><div style="font-family:\'JetBrains Mono\'">SYS.VER.4.0.2</div></div>', unsafe_allow_html=True)
+st.markdown('<div class="nav-container"><div class="brand">CINE MATCH // PRIMAL</div><div style="font-family:\'JetBrains Mono\'">SYS.VER.4.0.2</div></div>', unsafe_allow_html=True)
 
 with st.sidebar:
     st.markdown('<div class="tech-header">SYSTEM CONSOLE</div>', unsafe_allow_html=True)
