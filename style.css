@@ -369,22 +369,33 @@ header {
         gap: 10px !important;
         margin-bottom: 1.5rem !important;
     }
+
     .brand {
         font-size: 1.5rem !important;
     }
+
     .hero-box {
         padding: 3rem 1rem !important;
         border-radius: 15px !important;
     }
+
     .hero-box h1 {
         font-size: 2.5rem !important;
     }
+
     .research-container {
         padding: 1.5rem !important;
     }
+
     .movie-card {
         height: auto !important;
         min-height: 480px !important;
+    }
+
+    /* Vector Manifold Mobile Fix */
+    div[data-testid="stPlotlyChart"] iframe,
+    .stPlotlyChart {
+        height: 450px !important;
     }
 }
 
@@ -392,9 +403,15 @@ header {
     .hero-box h1 {
         font-size: 2rem !important;
     }
+
     .sigma-badge {
         font-size: 0.6rem !important;
         padding: 2px 8px !important;
         letter-spacing: 1px !important;
     }
+}
+
+/* Vector Manifold Base Fix */
+div[data-testid="stPlotlyChart"] {
+    min-height: 400px;
 }

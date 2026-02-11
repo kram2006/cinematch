@@ -462,7 +462,7 @@ with tab2:
                 ),
                 paper_bgcolor='rgba(0,0,0,0)',
                 plot_bgcolor='rgba(0,0,0,0)',
-                height=800 # Full-screen experience
+                height=700 # Reduced from 800 for better mobile synergy
             )
             
             fig.update_scenes(
