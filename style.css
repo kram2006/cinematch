@@ -1,0 +1,400 @@
+/* CineMatch Premium Resume-Grade Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Outfit:wght@400;600;900&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+    --bg-color: #03040a;
+    --card-bg: rgba(18, 20, 30, 0.7);
+    --accent-red: #ff3e3e;
+    --accent-gold: #ffcc00;
+    --text-main: #e2e8f0;
+    --glass: rgba(255, 255, 255, 0.03);
+}
+
+/* Theme Awareness Override */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: #f7f9fc;
+        --card-bg: rgba(255, 255, 255, 0.9);
+        --text-main: #1a202c;
+        --glass: rgba(0, 0, 0, 0.03);
+    }
+}
+
+.stApp {
+    background: radial-gradient(circle at 20% 30%, var(--bg-color) 0%, #000 100%) !important;
+    font-family: 'Inter', sans-serif !important;
+    color: var(--text-main);
+    animation: bgMovement 20s infinite alternate;
+}
+
+@media (prefers-color-scheme: light) {
+    .stApp {
+        background: radial-gradient(circle at 20% 30%, #ffffff 0%, #f0f2f6 100%) !important;
+    }
+}
+
+@keyframes bgMovement {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* Navigation Bar */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 3rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    background: linear-gradient(90deg, #fff, var(--accent-red));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+
+/* Cinematic Particles (CSS simulated) */
+.stApp::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.15;
+    z-index: -2;
+    animation: stardustMove 120s linear infinite;
+}
+
+@keyframes stardustMove {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Glassmorphism Depth */
+.movie-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    padding: 12px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.movie-card:hover {
+    transform: translateY(-20px) scale(1.02);
+    border-color: var(--accent-red);
+    box-shadow: 0 30px 60px rgba(255, 62, 62, 0.25);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.poster-img {
+    width: 100%;
+    border-radius: 16px;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    transition: all 0.8s ease;
+    filter: brightness(0.9);
+}
+
+.movie-card:hover .poster-img {
+    filter: brightness(1.1);
+    transform: scale(1.04);
+}
+
+/* Hero Section */
+.hero-box {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=2000');
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 4rem;
+}
+
+.hero-box::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, var(--bg-color));
+}
+
+/* Research Section Styling */
+.research-container {
+    background: var(--glass);
+    border-radius: 24px;
+    padding: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 5rem;
+}
+
+.code-block {
+    background: #000 !important;
+    border-radius: 12px !important;
+    border: 1px solid #333 !important;
+    padding: 1.5rem !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.9rem !important;
+}
+
+/* Interactive Elements */
+.stButton>button {
+    background: linear-gradient(45deg, var(--accent-red), #ff6b6b) !important;
+    color: white !important;
+    border-radius: 100px !important;
+    padding: 1rem 3rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 2px !important;
+    border: none !important;
+    transition: all 0.3s !important;
+    box-shadow: 0 10px 20px rgba(255, 62, 62, 0.3) !important;
+}
+
+.stButton>button:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 15px 30px rgba(255, 62, 62, 0.5) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1a1b26;
+    border-radius: 10px;
+    border: 2px solid var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-red);
+}
+
+/* Pencil Sketch Mind Map Architecture */
+.mindmap-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background: #0a0b10;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 2rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.map-node {
+    position: absolute;
+    padding: 12px 18px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #fff;
+    cursor: default;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.map-node:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.node-center {
+    background: rgba(255, 62, 62, 0.1) !important;
+    border: 1px solid #ff3e3e !important;
+    color: white !important;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 20px 30px !important;
+    box-shadow: 0 0 20px rgba(255, 62, 62, 0.2) !important;
+}
+
+.node-input {
+    border-color: rgba(255, 204, 0, 0.3) !important;
+    background: rgba(255, 204, 0, 0.05) !important;
+}
+
+.node-output {
+    border-color: rgba(0, 255, 65, 0.3) !important;
+    background: rgba(0, 255, 65, 0.05) !important;
+}
+
+.node-icon {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+/* Sigma Mode / Cyberpunk Aesthetic Extensions */
+
+/* Tech Badge instead of Emojis */
+.sigma-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid #00ff41;
+    color: #00ff41;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 2px;
+    margin-right: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+}
+
+/* Glowing Status Dot */
+.status-dot {
+    height: 10px;
+    width: 10px;
+    background-color: #ff3e3e;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 15px #ff3e3e;
+    animation: pulse 2s infinite;
+    margin-right: 8px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+        box-shadow: 0 0 0px #ff3e3e;
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 20px #ff3e3e;
+    }
+
+    100% {
+        opacity: 0.5;
+        box-shadow: 0 0 0px #ff3e3e;
+    }
+}
+
+/* Terminal Header Style */
+.tech-header {
+    border-left: 4px solid var(--accent-red);
+    padding-left: 15px;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, rgba(255, 62, 62, 0.1), transparent);
+    margin: 2rem 0;
+}
+
+/* Tab Overrides for Tech Look */
+button[data-baseweb="tab"] {
+    font-family: 'JetBrains Mono', monospace !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    border-radius: 0 !important;
+}
+
+/* Metric Value Override */
+div[data-testid="stMetricValue"] {
+    font-family: 'JetBrains Mono', monospace !important;
+    color: var(--accent-gold) !important;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+}
+
+
+/* Hide Streamlit Menu */
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column !important;
+        padding: 1rem !important;
+        gap: 10px !important;
+        margin-bottom: 1.5rem !important;
+    }
+    .brand {
+        font-size: 1.5rem !important;
+    }
+    .hero-box {
+        padding: 3rem 1rem !important;
+        border-radius: 15px !important;
+    }
+    .hero-box h1 {
+        font-size: 2.5rem !important;
+    }
+    .research-container {
+        padding: 1.5rem !important;
+    }
+    .movie-card {
+        height: auto !important;
+        min-height: 480px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-box h1 {
+        font-size: 2rem !important;
+    }
+    .sigma-badge {
+        font-size: 0.6rem !important;
+        padding: 2px 8px !important;
+        letter-spacing: 1px !important;
+    }
+}
