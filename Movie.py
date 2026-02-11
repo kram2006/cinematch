@@ -537,19 +537,19 @@ with tab5:
     
     # Research Metadata Component
     metadata_html = """
-    <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px; border-left: 5px solid #ff3e3e; margin-bottom: 30px; color: white; font-family: sans-serif;">
-        <h3 style="margin-top: 0; color: #ff3e3e; font-family: 'Courier New', Courier, monospace;">🔬 RESEARCH METADATA & METHODOLOGY</h3>
+    <div style="background: rgba(255,255,255,0.03); padding: 25px; border-radius: 12px; border-left: 5px solid #ff3e3e; margin-bottom: 30px; color: white; font-family: 'Outfit', sans-serif;">
+        <h3 style="margin-top: 0; color: #ff3e3e; font-family: 'Outfit', sans-serif; font-weight: 900; letter-spacing: 1px;">🔬 RESEARCH METADATA & METHODOLOGY</h3>
         
-        <p style="color: #aaa; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem;">
+        <p style="color: #aaa; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6;">
             This module evaluates the performance of the Cine Match recommendation engine using a controlled experimental setup. 
             We analyze how different <b>Numerical Vectorization Strategies</b> impact both the accuracy and efficiency of the system.
         </p>
 
-        <h4 style="color: #fff; margin-top: 20px;">📂 UNDERLYING DATASET</h4>
-        <p style="font-size: 0.85rem; color: #eee;">
+        <h4 style="color: #fff; margin-top: 25px; font-family: 'Outfit', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">📂 UNDERLYING DATASET</h4>
+        <p style="font-size: 0.85rem; color: #eee; font-family: 'JetBrains Mono', monospace;">
             The evaluation runs on the <b>TMDB 5000 Movie Dataset</b>. Specifically, it utilizes the <b>'tags'</b> feature 
             created during preprocessing, which is a fused textual signature containing:
-            <ul style="font-size: 0.85rem; color: #ccc;">
+            <ul style="font-size: 0.85rem; color: #ccc; font-family: 'JetBrains Mono', monospace; line-height: 1.8;">
                 <li>Movie Overviews (Plot summaries)</li>
                 <li>Genres (Action, Sci-Fi, etc.)</li>
                 <li>Keywords (Metadata tags)</li>
@@ -558,32 +558,32 @@ with tab5:
             </ul>
         </p>
 
-        <h4 style="color: #fff; margin-top: 20px;">📏 CORE METRICS EXPLAINED</h4>
-        <div style="display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap;">
-            <div style="background: rgba(0,0,0,0.3); padding: 15px; border: 1px solid #333; border-radius: 8px; flex: 1; min-width: 250px;">
-                <b style="color: #00ff41;">1. PRECISION @ 10 (Accuracy)</b>
-                <p style="font-size: 0.8rem; color: #bbb; margin-top: 5px;">
-                    <b>What:</b> The percentage of the top 10 recommendations that are actually "relevant."<br>
-                    <b>Logic:</b> We use <b>Genre Overlap</b> as a Ground Truth. If a recommended movie shares at least one genre 
+        <h4 style="color: #fff; margin-top: 25px; font-family: 'Outfit', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">📏 CORE METRICS EXPLAINED</h4>
+        <div style="display: flex; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
+            <div style="background: rgba(0,0,0,0.3); padding: 20px; border: 1px solid #333; border-radius: 12px; flex: 1; min-width: 250px; transition: 0.3s;">
+                <b style="color: #00ff41; font-family: 'Outfit', sans-serif; font-size: 1rem;">1. PRECISION @ 10 (Accuracy)</b>
+                <p style="font-size: 0.8rem; color: #bbb; margin-top: 8px; font-family: 'JetBrains Mono', monospace; line-height: 1.5;">
+                    <b style="color: #eee;">What:</b> The percentage of the top 10 recommendations that are actually "relevant."<br>
+                    <b style="color: #eee;">Logic:</b> We use <b>Genre Overlap</b> as a Ground Truth. If a recommended movie shares at least one genre 
                     with the query movie, it is counted as a "Hit."<br>
-                    <b>Why:</b> In content-based filtering, genre preservation is the strongest indicator of thematic relevance.
+                    <b style="color: #eee;">Why:</b> In content-based filtering, genre preservation is the strongest indicator of thematic relevance.
                 </p>
             </div>
-            <div style="background: rgba(0,0,0,0.3); padding: 15px; border: 1px solid #333; border-radius: 8px; flex: 1; min-width: 250px;">
-                <b style="color: #00d2ff;">2. LATENCY (Efficiency)</b>
-                <p style="font-size: 0.8rem; color: #bbb; margin-top: 5px;">
-                    <b>What:</b> Measured in <b>milliseconds (ms)</b> per recommendation request.<br>
-                    <b>Logic:</b> The time taken to vectorize the query tag and compute the cosine similarity against 4,800 records.<br>
-                    <b>Why:</b> In real-time production systems, high accuracy is useless if the response takes several seconds.
+            <div style="background: rgba(0,0,0,0.3); padding: 20px; border: 1px solid #333; border-radius: 12px; flex: 1; min-width: 250px;">
+                <b style="color: #00d2ff; font-family: 'Outfit', sans-serif; font-size: 1rem;">2. LATENCY (Efficiency)</b>
+                <p style="font-size: 0.8rem; color: #bbb; margin-top: 8px; font-family: 'JetBrains Mono', monospace; line-height: 1.5;">
+                    <b style="color: #eee;">What:</b> Measured in <b>milliseconds (ms)</b> per recommendation request.<br>
+                    <b style="color: #eee;">Logic:</b> The time taken to vectorize the query tag and compute the cosine similarity against 4,800 records.<br>
+                    <b style="color: #eee;">Why:</b> In real-time production systems, high accuracy is useless if the response takes several seconds.
                 </p>
             </div>
         </div>
 
-        <h4 style="color: #fff; margin-top: 20px;">🧪 EXPERIMENTAL STRATEGIES</h4>
-        <ul style="font-size: 0.85rem; color: #ccc;">
-            <li><b>Bag-of-Words (BoW):</b> Counts word frequencies. Fast but ignores context.</li>
-            <li><b>TF-IDF:</b> Weights rare words higher. Better for identifying unique movie themes.</li>
-            <li><b>SBERT (Deep Learning):</b> Uses Transformer models to understand semantic meaning (e.g., knows "Space" is similar to "Galaxy").</li>
+        <h4 style="color: #fff; margin-top: 25px; font-family: 'Outfit', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">🧪 EXPERIMENTAL STRATEGIES</h4>
+        <ul style="font-size: 0.85rem; color: #ccc; font-family: 'JetBrains Mono', monospace; line-height: 1.8;">
+            <li><b style="color: #fff;">Bag-of-Words (BoW):</b> Counts word frequencies. Fast but ignores context.</li>
+            <li><b style="color: #fff;">TF-IDF:</b> Weights rare words higher. Better for identifying unique movie themes.</li>
+            <li><b style="color: #fff;">SBERT (Deep Learning):</b> Uses Transformer models to understand semantic meaning (e.g., knows "Space" is similar to "Galaxy").</li>
         </ul>
     </div>
     """
