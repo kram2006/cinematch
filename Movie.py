@@ -282,7 +282,7 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(["DISCOVERY PROTOCOL", "VECTOR MANIFOLD",
 with tab1:
     st.markdown("""
         <div class="hero-box">
-            <h1 style="font-family:'Outfit'; font-weight:900; font-size:4rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:-2px;">Cine Match <span style="color:#ff3e3e">Prime</span></h1>
+            <h1 style="font-family:'Outfit'; font-weight:900; font-size:4rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:-2px;">Cine Match <span style="color:#ff3e3e">Primal</span></h1>
             <p style="color:#cbd5e0; font-family:'JetBrains Mono'; font-size:1rem;">[INITIATING NEURAL HANDSHAKE...] PREDICTING CINEMATIC ALIGNMENT.</p>
         </div>
     """, unsafe_allow_html=True)
