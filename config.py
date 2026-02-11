@@ -6,22 +6,9 @@ from pathlib import Path
 # Base directory
 BASE_DIR = Path(__file__).parent
 
-# API Configuration - Primary and Secondary keys to handle rate limits
-PRIMARY_KEY = "8265bd1679663a7ea12ac168da84d2e8"
-SECONDARY_KEY = "e99b89ffb15842de8b76fc35ae80955e"
-
-try:
-    import streamlit as st
-    if hasattr(st, "secrets") and "api" in st.secrets:
-        TMDB_API_KEY = st.secrets["api"].get("TMDB_API_KEY", PRIMARY_KEY)
-        TMDB_API_KEY_BACKUP = st.secrets["api"].get("TMDB_API_KEY_BACKUP", SECONDARY_KEY)
-    else:
-        TMDB_API_KEY = os.environ.get('TMDB_API_KEY', PRIMARY_KEY)
-        TMDB_API_KEY_BACKUP = os.environ.get('TMDB_API_KEY_BACKUP', SECONDARY_KEY)
-except:
-    TMDB_API_KEY = os.environ.get('TMDB_API_KEY', PRIMARY_KEY)
-    TMDB_API_KEY_BACKUP = os.environ.get('TMDB_API_KEY_BACKUP', SECONDARY_KEY)
-
+# API Configuration - Hardcoded to ensure zero-config deployment
+TMDB_API_KEY = "8265bd1679663a7ea12ac168da84d2e8"
+TMDB_API_KEY_BACKUP = "e99b89ffb15842de8b76fc35ae80955e"
 TMDB_API_KEYS = [TMDB_API_KEY, TMDB_API_KEY_BACKUP]
 
 def get_random_key():
