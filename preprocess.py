@@ -258,7 +258,7 @@ if __name__ == "__main__":
         logger.info("="*60)
         logger.info("Pipeline completed successfully!")
         logger.info("="*60)
-        logger.info("You can now run: streamlit run Movie.py")
+        logger.info("Pipeline complete. You can now use the static site or export JSON.")
     except Exception as e:
         logger.error(f"Failed to save artifacts: {str(e)}")
         sys.exit(1)
