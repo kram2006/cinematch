@@ -753,6 +753,37 @@ body::before {
     line-height: 1.5;
 }
 
+/* Pipeline Stages Grid (6-card grid) */
+.pipeline-stages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.pipeline-stage-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-subtle);
+    border-left: 4px solid var(--accent-red);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.pipeline-stage-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
+    border-left-color: var(--accent-gold);
+}
+
+.pipeline-stage-card:nth-child(even) {
+    border-left-color: var(--accent-blue);
+}
+
+.pipeline-stage-card:nth-child(even):hover {
+    border-left-color: var(--accent-gold);
+}
+
 /* ============ RESEARCH CONTAINER (Academic) ============ */
 .research-container {
     background: var(--glass);
@@ -1571,6 +1602,46 @@ body[data-theme="light"] .loading-indicator {
 
 body[data-theme="light"] .progress-fill {
     background: linear-gradient(90deg, #16a34a, #0ea5e9);
+}
+
+/* Light mode pipeline */
+body[data-theme="light"] .pipeline-grid {
+    gap: 16px;
+}
+
+body[data-theme="light"] .pipeline-col {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body[data-theme="light"] .pipeline-list li {
+    color: #555;
+    border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme="light"] .pipeline-list li strong {
+    color: #1a1a2e;
+}
+
+body[data-theme="light"] .pipeline-stage-card {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+body[data-theme="light"] .pipeline-stage-card:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+body[data-theme="light"] .stage-number {
+    color: rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="light"] .stage-title {
+    color: #1a1a2e;
+}
+
+body[data-theme="light"] .stage-desc {
+    color: #666;
 }
 
 /* Light mode scrollbar */

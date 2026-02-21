@@ -134,6 +134,58 @@ ENGINE: COSINE_SIM</pre>
                         </ul>
                     </div>
                 </div>
+
+                <div class="tech-header" style="margin-top:32px;">PROCESSING STAGES</div>
+                <div class="pipeline-stages-grid">
+                    <div class="pipeline-stage-card">
+                        <div class="stage-number">01</div>
+                        <div class="stage-title">RAW DATA INGESTION</div>
+                        <div class="stage-desc">
+                            Parse TMDB 5000 CSV files. Extract structured fields: title, genres, keywords,
+                            cast, crew, and plot overview for each movie entry.
+                        </div>
+                    </div>
+                    <div class="pipeline-stage-card">
+                        <div class="stage-number">02</div>
+                        <div class="stage-title">TAG FUSION ENGINE</div>
+                        <div class="stage-desc">
+                            Concatenate genres, top-3 cast, director, and keywords into a unified text
+                            signature per movie. Apply stemming for normalization.
+                        </div>
+                    </div>
+                    <div class="pipeline-stage-card">
+                        <div class="stage-number">03</div>
+                        <div class="stage-title">COUNT VECTORIZATION</div>
+                        <div class="stage-desc">
+                            Transform fused tags into a 5000-dimensional Bag-of-Words vector space
+                            using sklearn CountVectorizer with max_features=5000.
+                        </div>
+                    </div>
+                    <div class="pipeline-stage-card">
+                        <div class="stage-number">04</div>
+                        <div class="stage-title">COSINE SIMILARITY MATRIX</div>
+                        <div class="stage-desc">
+                            Compute pairwise cosine similarity across all 4806 movie vectors.
+                            Pre-sort top-N neighbors per movie for O(1) retrieval.
+                        </div>
+                    </div>
+                    <div class="pipeline-stage-card">
+                        <div class="stage-number">05</div>
+                        <div class="stage-title">SVD MANIFOLD PROJECTION</div>
+                        <div class="stage-desc">
+                            Apply Truncated SVD to reduce 5000-D vectors to 3 latent dimensions.
+                            Generates interactive 3D scatter coordinates for cluster visualization.
+                        </div>
+                    </div>
+                    <div class="pipeline-stage-card">
+                        <div class="stage-number">06</div>
+                        <div class="stage-title">FEATURE ATTRIBUTION (XAI)</div>
+                        <div class="stage-desc">
+                            Element-wise product of query and recommendation vectors to identify
+                            top shared metadata features with contribution scores.
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- TAB 4: ACADEMIC ARCHIVES -->
