@@ -354,7 +354,7 @@ async function selectMovie(title) {
 
 function buildFeatureBlock(score, features) {
     let html = `
-        <div class="cosine-display" style="margin-top:15px;">
+        <div class="cosine-display">
             <div class="cosine-score">COSINE SIMILARITY: ${score.toFixed(4)}</div>
             <div class="feature-breakdown">
                 <div class="feature-header">TOP SHARED FEATURES:</div>`;
