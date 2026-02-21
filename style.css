@@ -1723,21 +1723,6 @@ body[data-theme="light"] .rec-btn {
 }
 
 
-body[data-theme="light"] .pipeline-col {
-    background: #ffffff;
-    border: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-elevation-low);
-    border-radius: 20px;
-}
-
-body[data-theme="light"] .pipeline-list li {
-    color: #475569;
-    border-bottom: 1px solid var(--border-dim);
-}
-
-body[data-theme="light"] .pipeline-list li strong {
-    color: #0f172a;
-}
 
 body[data-theme="light"] .research-container {
     background: #ffffff;
@@ -1841,17 +1826,19 @@ body[data-theme="light"] .pipeline-grid {
 }
 
 body[data-theme="light"] .pipeline-col {
-    background: rgba(0, 0, 0, 0.02);
-    border-color: rgba(0, 0, 0, 0.06);
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-elevation-low);
+    border-radius: 20px;
 }
 
 body[data-theme="light"] .pipeline-list li {
-    color: #555;
-    border-bottom-color: rgba(0, 0, 0, 0.05);
+    color: #475569;
+    border-bottom: 1px solid var(--border-dim);
 }
 
 body[data-theme="light"] .pipeline-list li strong {
-    color: #1a1a2e;
+    color: #0f172a;
 }
 
 body[data-theme="light"] .pipeline-stage-card {
@@ -1867,15 +1854,17 @@ body[data-theme="light"] .pipeline-stage-card:hover {
 }
 
 body[data-theme="light"] .stage-number {
-    color: rgba(0, 0, 0, 0.08);
+    color: rgba(15, 23, 42, 0.08);
+    /* Midnight Ink with low opacity */
 }
 
 body[data-theme="light"] .stage-title {
-    color: #1a1a2e;
+    color: #0f172a;
+    font-weight: 700;
 }
 
 body[data-theme="light"] .stage-desc {
-    color: #666;
+    color: #334155;
 }
 
 /* Light mode scrollbar */
