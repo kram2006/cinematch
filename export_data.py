@@ -63,7 +63,7 @@ for idx in range(total):
     query_vec = vectors[idx].toarray()[0]
     
     recs = []
-    for i, score in distances[1:11]:  # Top 10, skip self
+    for i, score in distances[:11]:  # Include self as top result for Primary Target
         rec_vec = vectors[i].toarray()[0]
         
         # Compute shared features (element-wise product)
