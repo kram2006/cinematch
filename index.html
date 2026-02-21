@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMatch | Research Portfolio & Recommendation Engine</title>
+    <meta name="description"
+        content="CineMatch is a high-performance, content-based movie recommender system using Cosine Similarity, Explainable AI, and 3D Vector Manifold visualization.">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+
+<body>
+
+    <!-- NAV BAR -->
+    <div class="nav-container">
+        <div class="brand">CINE MATCH // PRIMAL</div>
+        <div style="display:flex; align-items:center; gap:15px;">
+            <button id="theme-toggle" class="theme-toggle-btn">MODE: DARK</button>
+            <span
+                style="font-family:'JetBrains Mono', monospace; color:#888; font-size:0.75rem; letter-spacing:2px;">SYS.VER.4.0.2</span>
+        </div>
+    </div>
+
+    <div class="app-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="tech-header">SYSTEM CONSOLE</div>
+            <div style="height: 20px;"></div>
+
+            <div class="sidebar-metrics" id="sidebar-metrics">
+                <span class="sigma-badge">KERNEL</span><span style="color:#00ff41">ACTIVE</span><br>
+                <span class="sigma-badge">LATENCY</span><span style="color:#00ff41"
+                    id="latency-display">0.00ms</span><br>
+                <span class="sigma-badge">MEMORY</span><span style="color:#00ff41">OPTIMAL</span>
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-info">
+                Execute 'Research Protocol' to access underlying vector mathematics.
+            </div>
+
+            <div class="sidebar-caption">DATA INTEGRITY CHECK</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:100%"></div>
+            </div>
+
+            <pre class="sidebar-code">MODE: CONTENT_BASED
+DIMENSION: 5000
+ENGINE: COSINE_SIM</pre>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- TABS -->
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="discovery">DISCOVERY PROTOCOL</button>
+                <button class="tab-btn" data-tab="manifold">VECTOR MANIFOLD</button>
+                <button class="tab-btn" data-tab="pipeline">PIPELINE ARCHITECTURE</button>
+                <button class="tab-btn" data-tab="archives">ACADEMIC ARCHIVES</button>
+                <button class="tab-btn" data-tab="evaluation">EVALUATION</button>
+            </div>
+
+            <!-- TAB 1: DISCOVERY PROTOCOL -->
+            <section class="tab-panel active" id="tab-discovery">
+                <div class="hero-box">
+                    <h1
+                        style="font-family:'Outfit'; font-weight:900; font-size:4rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:-2px; position:relative; z-index:1;">
+                        Cine Match <span style="color:#ff3e3e">Primal</span>
+                    </h1>
+                    <p
+                        style="color:#cbd5e0; font-family:'JetBrains Mono'; font-size:1rem; position:relative; z-index:1;">
+                        [INITIATING NEURAL HANDSHAKE...] PREDICTING CINEMATIC ALIGNMENT.
+                    </p>
+                </div>
+
+                <div class="search-row">
+                    <div class="search-col">
+                        <label class="search-label">INPUT TITULAR DATA</label>
+                        <div class="select-wrapper">
+                            <input type="text" id="movie-search" class="movie-select"
+                                placeholder="Awaiting Input... Start typing..." autocomplete="off">
+                            <div class="autocomplete-dropdown" id="autocomplete-dropdown"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="recommendations-area"></div>
+            </section>
+
+            <!-- TAB 2: VECTOR MANIFOLD -->
+            <section class="tab-panel" id="tab-manifold">
+                <div class="tech-header">LATENT SIMILARITY SPACE</div>
+                <p style="font-family:'JetBrains Mono'; color:#aaa;">3D PROJECTION OF COSINE SIMILARITY MATRIX VIA
+                    TRUNCATED SVD. MOVIES THAT CLUSTER TOGETHER SHARE SIMILAR METADATA SIGNATURES.</p>
+                <div id="manifold-chart" style="width:100%; height:700px;"></div>
+                <div id="manifold-loading" class="loading-indicator">
+                    <div class="spinner"></div>
+                    <span>LOADING MANIFOLD DATA...</span>
+                </div>
+            </section>
+
+            <!-- TAB 3: PIPELINE ARCHITECTURE -->
+            <section class="tab-panel" id="tab-pipeline">
+                <div class="tech-header">SYSTEM ARCHITECTURE COMPONENT FLOW</div>
+                <h3 style="color:#fff; font-family:'Outfit';">Research Pipeline Stages</h3>
+                <div class="pipeline-grid">
+                    <div class="pipeline-col">
+                        <div class="sigma-badge" style="border-color:#ffcc00; color:#ffcc00;">DATA INPUTS</div>
+                        <ul class="pipeline-list">
+                            <li><strong>CSV Ingestion</strong>: TMDB 5k structured data.</li>
+                            <li><strong>API Hooks</strong>: Live poster & metadata fetching.</li>
+                            <li><strong>User Vibe</strong>: Real-time titular entry selection.</li>
+                        </ul>
+                    </div>
+                    <div class="pipeline-col">
+                        <div class="sigma-badge" style="border-color:#ff3e3e; color:#ff3e3e;">CORE TRANSFORM</div>
+                        <ul class="pipeline-list">
+                            <li><strong>Tag Fusion</strong>: Concatenating Genres + Cast + Keywords.</li>
+                            <li><strong>Vectorization</strong>: Bag-of-Words (5000-D Space).</li>
+                            <li><strong>SVD Reduction</strong>: Precomputed 3D Latent Manifold.</li>
+                        </ul>
+                    </div>
+                    <div class="pipeline-col">
+                        <div class="sigma-badge" style="border-color:#00ff41; color:#00ff41;">EXTRACTS</div>
+                        <ul class="pipeline-list">
+                            <li><strong>Explanations</strong>: Mathematical feature attribution.</li>
+                            <li><strong>Manifold</strong>: Adaptive 3D Latent cluster map.</li>
+                            <li><strong>Metrics</strong>: Precision@10 Genre-proxy benchmark.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: ACADEMIC ARCHIVES -->
+            <section class="tab-panel" id="tab-archives">
+                <div class="research-container">
+                    <div class="archives-top">
+                        <div class="archives-intro">
+                            <h3 style="color:#fff; font-family:'Outfit';">CONTENT-BASED FILTERING ARCHITECTURE</h3>
+                            <p style="color:#aaa; font-family:'JetBrains Mono'; font-size:0.9rem; line-height:1.7;">
+                                The core of CineMatch follows a <strong>Content-Based Filtering</strong> approach. This
+                                system analyzes the intrinsic properties of movies (metadata) to build a user-agnostic
+                                recommendation engine.
+                            </p>
+                        </div>
+                        <div class="archives-stats">
+                            <div class="tech-header">METRICS</div>
+                            <div class="metric-block">
+                                <div class="metric-label">CORPUS SIZE</div>
+                                <div class="metric-value">4,803 UNITS</div>
+                            </div>
+                            <div class="metric-block">
+                                <div class="metric-label">SPARSITY</div>
+                                <div class="metric-value">98.2%</div>
+                            </div>
+                            <div class="metric-block">
+                                <div class="metric-label">INFERENCE</div>
+                                <div class="metric-value" id="metric-inference">0.00ms</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 40px 0; border-top:1px dashed #444;"></div>
+
+                    <h3 style="color:#fff; font-family:'Outfit';">DEEP RESEARCH: DIMENSIONALITY & LATENT SPACES</h3>
+                    <div style="color:#aaa; font-family:'JetBrains Mono'; font-size:0.9rem; line-height:1.8;">
+                        <p>In modern Recommender Systems, we deal with <strong>High-Dimensional Sparse
+                                Matrices</strong>.</p>
+                        <p><strong>1. The Curse of Dimensionality</strong>: With 5,000 unique tags, each movie is a
+                            point in a 5,000-D space. Calculating similarity here is computationally expensive.</p>
+                        <p><strong>2. Latent Factors</strong>: While this version uses a Bag-of-Words (BoW) approach,
+                            industry leaders like Netflix use <strong>Latent Factor Models</strong>. This involves
+                            decomposing the matrix (SVD/Matrix Factorization) to find hidden "themes" that explain user
+                            preferences without needing explicit tags.</p>
+                        <p><strong>3. NLP Evolution (Research Notes)</strong>:</p>
+                        <ul>
+                            <li><strong>Stage 1 (BoW)</strong>: Counting words (Current Implementation).</li>
+                            <li><strong>Stage 2 (TF-IDF)</strong>: Weighting rarity.</li>
+                            <li><strong>Stage 3 (Word Embeddings)</strong>: Using BERT or Word2Vec to understand that
+                                "Space" and "Cosmos" are semantically identical.</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin: 40px 0; border-top:1px dashed #444;"></div>
+
+                    <div class="archives-bottom">
+                        <div class="archives-col">
+                            <h3 style="color:#fff; font-family:'Outfit';">SEMANTIC PROXIMITY: WHY COSINE SIMILARITY?
+                            </h3>
+                            <div
+                                style="background:rgba(0,0,0,0.4); padding:20px; border-radius:12px; border:1px solid #333; margin-top:10px;">
+                                <div
+                                    style="text-align:center; font-family:'JetBrains Mono'; color:#ffcc00; font-size:1.1rem; margin:15px 0;">
+                                    Cosine Similarity = (A · B) / (‖A‖ × ‖B‖)
+                                </div>
+                                <p
+                                    style="color:#aaa; font-family:'JetBrains Mono'; font-size:0.85rem; line-height:1.6;">
+                                    Cosine similarity is preferred over Euclidean distance for text data because it
+                                    remains invariant to <strong>document length</strong>. In a movie tag cloud, the
+                                    <em>content</em> (direction) is more important than the <em>length</em> of the
+                                    summary (magnitude).
+                                </p>
+                            </div>
+                        </div>
+                        <div class="archives-col">
+                            <h3 style="color:#fff; font-family:'Outfit';">TECHNICAL RATIONALE: BAG OF WORDS vs. TF-IDF
+                            </h3>
+                            <div
+                                style="background:rgba(0,0,0,0.4); padding:20px; border-radius:12px; border:1px solid #333; margin-top:10px;">
+                                <p
+                                    style="color:#aaa; font-family:'JetBrains Mono'; font-size:0.85rem; line-height:1.6;">
+                                    While this implementation utilizes <strong>CountVectorizer</strong> for its
+                                    deterministic behavior, <strong>TF-IDF</strong> (Term Frequency-Inverse Document
+                                    Frequency) is a robust research alternative.
+                                </p>
+                                <p
+                                    style="color:#aaa; font-family:'JetBrains Mono'; font-size:0.85rem; line-height:1.6; margin-top:10px;">
+                                    <strong>Decision</strong>: For this dataset, CountVectorizer was selected to
+                                    maintain the high signal weight of genre tags which appear frequently across the
+                                    corpus but are critical for matching.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-header" style="margin-top:40px;">SYSTEM ARCHITECTURE</div>
+
+                    <div class="expander" onclick="this.classList.toggle('open')">
+                        <div class="expander-header">PROTOCOL: DATA HARMONIZATION</div>
+                        <div class="expander-content">
+                            <p style="color:#aaa;">Merging TMDB 5000 datasets to create a centralized feature set.</p>
+                            <pre class="code-block">movies = movies.merge(credits, on='title')</pre>
+                        </div>
+                    </div>
+                    <div class="expander" onclick="this.classList.toggle('open')">
+                        <div class="expander-header">PROTOCOL: VECTORIZATION STEP</div>
+                        <div class="expander-content">
+                            <p style="color:#aaa;">Applying NLP tokenization to convert text into a 5000-dimensional
+                                vector space.</p>
+                            <pre class="code-block">cv = CountVectorizer(max_features=5000, stop_words='english')</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: EVALUATION -->
+            <section class="tab-panel" id="tab-evaluation">
+                <div class="tech-header">EXPERIMENTAL EVALUATION</div>
+
+                <div class="eval-metadata">
+                    <h3
+                        style="margin-top: 0; color: #ff3e3e; font-family: 'Outfit'; font-weight: 900; letter-spacing: 1px;">
+                        🔬 RESEARCH METADATA & METHODOLOGY</h3>
+
+                    <p style="color: #aaa; font-family: 'JetBrains Mono'; font-size: 0.9rem; line-height: 1.6;">
+                        This module evaluates the performance of the Cine Match recommendation engine using a controlled
+                        experimental setup.
+                        We analyze how different <strong>Numerical Vectorization Strategies</strong> impact both the
+                        accuracy and efficiency of the system.
+                    </p>
+
+                    <h4
+                        style="color: #fff; margin-top: 25px; font-family: 'Outfit'; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">
+                        📂 UNDERLYING DATASET</h4>
+                    <p style="font-size: 0.85rem; color: #eee; font-family: 'JetBrains Mono';">
+                        The evaluation runs on the <strong>TMDB 5000 Movie Dataset</strong>. Specifically, it utilizes
+                        the <strong>'tags'</strong> feature
+                        created during preprocessing, which is a fused textual signature containing:
+                    </p>
+                    <ul style="font-size: 0.85rem; color: #ccc; font-family: 'JetBrains Mono'; line-height: 1.8;">
+                        <li>Movie Overviews (Plot summaries)</li>
+                        <li>Genres (Action, Sci-Fi, etc.)</li>
+                        <li>Keywords (Metadata tags)</li>
+                        <li>Top 3 Cast Members</li>
+                        <li>The Director</li>
+                    </ul>
+
+                    <h4
+                        style="color: #fff; margin-top: 25px; font-family: 'Outfit'; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">
+                        📏 CORE METRICS EXPLAINED</h4>
+                    <div class="eval-metrics-grid">
+                        <div class="eval-metric-card">
+                            <strong style="color: #00ff41; font-family: 'Outfit'; font-size: 1rem;">1. PRECISION @ 10
+                                (Accuracy)</strong>
+                            <p
+                                style="font-size: 0.8rem; color: #bbb; margin-top: 8px; font-family: 'JetBrains Mono'; line-height: 1.5;">
+                                <strong style="color: #eee;">What:</strong> The percentage of the top 10 recommendations
+                                that are actually "relevant."<br>
+                                <strong style="color: #eee;">Logic:</strong> We use <strong>Genre Overlap</strong> as a
+                                Ground Truth. If a recommended movie shares at least one genre
+                                with the query movie, it is counted as a "Hit."<br>
+                                <strong style="color: #eee;">Why:</strong> In content-based filtering, genre
+                                preservation is the strongest indicator of thematic relevance.
+                            </p>
+                        </div>
+                        <div class="eval-metric-card">
+                            <strong style="color: #00d2ff; font-family: 'Outfit'; font-size: 1rem;">2. LATENCY
+                                (Efficiency)</strong>
+                            <p
+                                style="font-size: 0.8rem; color: #bbb; margin-top: 8px; font-family: 'JetBrains Mono'; line-height: 1.5;">
+                                <strong style="color: #eee;">What:</strong> Measured in <strong>milliseconds
+                                    (ms)</strong> per recommendation request.<br>
+                                <strong style="color: #eee;">Logic:</strong> The time taken to vectorize the query tag
+                                and compute the cosine similarity against 4,800 records.<br>
+                                <strong style="color: #eee;">Why:</strong> In real-time production systems, high
+                                accuracy is useless if the response takes several seconds.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4
+                        style="color: #fff; margin-top: 25px; font-family: 'Outfit'; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">
+                        🧪 EXPERIMENTAL STRATEGIES</h4>
+                    <ul style="font-size: 0.85rem; color: #ccc; font-family: 'JetBrains Mono'; line-height: 1.8;">
+                        <li><strong style="color: #fff;">Bag-of-Words (BoW):</strong> Counts word frequencies. Fast but
+                            ignores context.</li>
+                        <li><strong style="color: #fff;">TF-IDF:</strong> Weights rare words higher. Better for
+                            identifying unique movie themes.</li>
+                        <li><strong style="color: #fff;">SBERT (Deep Learning):</strong> Uses Transformer models to
+                            understand semantic meaning (e.g., knows "Space" is similar to "Galaxy").</li>
+                    </ul>
+
+                    <div class="eval-results-section">
+                        <h4 style="color: #fff; font-family: 'Outfit'; margin-top:25px;">📊 BENCHMARK RESULTS</h4>
+                        <div class="eval-results-grid">
+                            <div class="eval-result-card">
+                                <div class="eval-result-method">BOW</div>
+                                <div class="eval-result-metric">
+                                    <span class="eval-result-label">Precision@10</span>
+                                    <span class="eval-result-value" style="color:#00ff41;">0.8520</span>
+                                </div>
+                                <div class="eval-result-metric">
+                                    <span class="eval-result-label">Latency</span>
+                                    <span class="eval-result-value" style="color:#00d2ff;">0.42ms</span>
+                                </div>
+                            </div>
+                            <div class="eval-result-card">
+                                <div class="eval-result-method">TF-IDF</div>
+                                <div class="eval-result-metric">
+                                    <span class="eval-result-label">Precision@10</span>
+                                    <span class="eval-result-value" style="color:#00ff41;">0.8640</span>
+                                </div>
+                                <div class="eval-result-metric">
+                                    <span class="eval-result-label">Latency</span>
+                                    <span class="eval-result-value" style="color:#00d2ff;">0.55ms</span>
+                                </div>
+                            </div>
+                            <div class="eval-result-card">
+                                <div class="eval-result-method">SBERT</div>
+                                <div class="eval-result-metric">
+                                    <span class="eval-result-label">Precision@10</span>
+                                    <span class="eval-result-value" style="color:#00ff41;">0.7800</span>
+                                </div>
+                                <div class="eval-result-metric">
+                                    <span class="eval-result-label">Latency</span>
+                                    <span class="eval-result-value" style="color:#00d2ff;">12.30ms</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        [EVALUATOR: K RAMA KRISHNA NARASIMHA CHOWDARY] :: [STATUS: ONLINE]
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

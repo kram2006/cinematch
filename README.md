@@ -1,10 +1,12 @@
 # 🎬 CineMatch | Research Portfolio & Recommendation Engine
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge.svg)](#)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-blue?logo=github)](#)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 CineMatch is a high-performance, content-based movie recommender system designed as a research portfolio. It combines advanced natural language processing (NLP) with a premium user interface to demonstrate the power of vector similarity in information retrieval.
+
+🌐 **Live Demo**: [https://kram2006.github.io/cinematch/](https://kram2006.github.io/cinematch/)
 
 ---
 
@@ -13,14 +15,14 @@ CineMatch is a high-performance, content-based movie recommender system designed
 ### 1. Vector Similarity Engine
 *   **Methodology**: Uses **Cosine Similarity** on high-dimensional movie metadata vectors.
 *   **Tag Fusion**: Combines plot overviews, genres, keywords, cast, and directors into unique textual signatures.
-*   **3D Manifold Visualization**: Projects the 5000-D feature space into a interactive 3D manifold using **Truncated SVD** for latent cluster analysis.
+*   **3D Manifold Visualization**: Projects the 5000-D feature space into an interactive 3D manifold using **Truncated SVD** for latent cluster analysis.
 
 ### 2. Explainable AI (XAI)
 *   **Transparency**: Every recommendation includes a mathematical breakdown of why it was chosen.
 *   **Feature Attribution**: Visualizes shared metadata features between the query and recommended movies.
 
 ### 3. Experimental Evaluation
-*   **Ablation Study**: Includes a module to benchmark different vectorization strategies (**Bag-of-Words**, **TF-IDF**, and **SBERT**).
+*   **Ablation Study**: Benchmarks different vectorization strategies (**Bag-of-Words**, **TF-IDF**, and **SBERT**).
 *   **Precision@10**: Evaluates accuracy using Genre Overlap as a scientific proxy for relevance.
 
 ### 4. Enterprise-Grade Reliability
@@ -32,49 +34,40 @@ CineMatch is a high-performance, content-based movie recommender system designed
 ## 🛠️ Project Structure
 
 ```text
-├── Movie.py                # Main Streamlit Application UI & Logic
-├── app_utils.py            # API Hooks & Utility Functions (Load Balanced)
-├── config.py               # Centralized Configuration & API Management
-├── preprocess.py           # Research Pipeline (Data Fusion -> SVD Projection)
+├── index.html              # Main Static Site (GitHub Pages)
+├── app.js                  # Client-Side Application Logic
+├── style.css               # Premium "Neon Tech" UI Design System
+├── data/
+│   ├── movies.json         # Exported Movie List (4,806 titles)
+│   ├── recommendations.json # Pre-computed Top-10 Recommendations
+│   └── manifold.json       # 3D SVD Coordinates
+├── Movie.py                # Original Streamlit Application (Reference)
+├── app_utils.py            # API Hooks & Utility Functions
+├── config.py               # Configuration & API Management
+├── preprocess.py           # Research Pipeline (Data Fusion -> SVD)
 ├── evaluation.py           # Experimental Benchmarking Module
 ├── explainability.py       # XAI Feature Attribution Module
-├── style.css               # Premium "Neon Tech" UI Design System
-└── requirements.txt        # System Dependencies
+├── export_data.py          # Pickle -> JSON Data Export Script
+└── requirements.txt        # Python Dependencies (for preprocessing)
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Deployment
 
-### 1. Installation
-```bash
-git clone https://github.com/yourusername/CineMatch.git
-cd CineMatch
-pip install -r requirements.txt
-```
+### GitHub Pages (Live Site)
+The site is deployed automatically via GitHub Pages from the `main` branch. Simply push to `main` and the site updates.
 
-### 2. Setup Data
-Download the [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata) and place the CSVs in the root directory. Then run the research pipeline:
-```bash
-python preprocess.py
-```
+### Regenerating Data (Advanced)
+If you need to regenerate the recommendation data from scratch:
 
-### 3. Local Deployment
-```bash
-streamlit run Movie.py
-```
-
----
-
-## ⚙️ Configuration
-
-CineMatch is designed for easy deployment. For Streamlit Cloud, add your API keys to the Secrets management:
-
-```toml
-[api]
-TMDB_API_KEY = "your_primary_key"
-TMDB_API_KEY_BACKUP = "your_secondary_key"
-```
+1. Download the [TMDB 5000 Movie Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata) and place CSVs in root.
+2. Run the research pipeline:
+   ```bash
+   pip install -r requirements.txt
+   python preprocess.py
+   python export_data.py
+   ```
 
 ---
 
