@@ -1530,8 +1530,8 @@ body[data-theme="light"] {
 }
 
 body[data-theme="light"]::before {
-    opacity: 0.03;
-    filter: brightness(1.2);
+    opacity: 0.05;
+    filter: sepia(0.1) contrast(1.05);
 }
 
 body[data-theme="light"] .nav-container {
@@ -1668,7 +1668,7 @@ body[data-theme="light"] .primary-target {
 }
 
 body[data-theme="light"] .primary-details h1 {
-    color: #1a1a2e;
+    color: var(--text-main);
 }
 
 body[data-theme="light"] .wiki-block {
