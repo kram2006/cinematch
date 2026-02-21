@@ -22,9 +22,9 @@ try:
     env_path = BASE_DIR / '.env'
     if env_path.exists():
         load_dotenv(env_path)
-        print("✅ Loaded configuration from .env file")
+        print("[SUCCESS] Loaded configuration from .env file")
 except ImportError:
-    print("ℹ️ python-dotenv not installed. Using system environment variables only.")
+    print("[INFO] python-dotenv not installed. Using system environment variables only.")
 
 # API Configuration
 POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500/"

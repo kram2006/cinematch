@@ -1,4 +1,4 @@
-# 🎬 CineMatch | Research Portfolio & Recommendation Engine
+# CineMatch | Research Portfolio & Recommendation Engine
 
 [![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-blue?logo=github)](#)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](#)
@@ -6,11 +6,11 @@
 
 CineMatch is a high-performance, content-based movie recommender system designed as a research portfolio. It combines advanced natural language processing (NLP) with a premium user interface to demonstrate the power of vector similarity in information retrieval.
 
-🌐 **Live Demo**: [https://kram2006.github.io/cinematch/](https://kram2006.github.io/cinematch/)
+**Live Demo**: [https://kram2006.github.io/cinematch/](https://kram2006.github.io/cinematch/)
 
 ---
 
-## 🔬 Core Features
+## Core Features
 
 ### 1. Vector Similarity Engine
 *   **Methodology**: Uses **Cosine Similarity** on high-dimensional movie metadata vectors.
@@ -31,29 +31,32 @@ CineMatch is a high-performance, content-based movie recommender system designed
 
 ---
 
-## 🛠️ Project Structure
+## Project Structure
 
 ```text
 ├── index.html              # Main Static Site (GitHub Pages)
-├── app.js                  # Client-Side Application Logic
+├── app.js                  # Client-Side Application Logic (Core Engine)
 ├── style.css               # Premium "Neon Tech" UI Design System
 ├── data/
 │   ├── movies.json         # Exported Movie List (4,806 titles)
 │   ├── recommendations.json # Pre-computed Top-10 Recommendations
-│   └── manifold.json       # 3D SVD Coordinates
-├── Movie.py                # Original Streamlit Application (Reference)
-├── app_utils.py            # API Hooks & Utility Functions
-├── config.py               # Configuration & API Management
-├── preprocess.py           # Research Pipeline (Data Fusion -> SVD)
+│   ├── manifold.json       # 3D SVD Coordinates
+│   └── evaluation.json     # Pre-computed Benchmark Metrics
+├── app_utils.py            # API Hooks & Metadata Utilities
+├── config.py               # Configuration & API Key Rotation
+├── preprocess.py           # Research Pipeline (Vectorization -> SVD)
 ├── evaluation.py           # Experimental Benchmarking Module
 ├── explainability.py       # XAI Feature Attribution Module
-├── export_data.py          # Pickle -> JSON Data Export Script
-└── requirements.txt        # Python Dependencies (for preprocessing)
+├── export_data.py          # Pickle -> JSON Data Export Tool
+├── similarity.pkl          # Pre-computed Similarity Matrix (Large)
+├── movie_list.pkl          # Processed Movie Metadata Pickle
+├── cv.pkl                  # Fitted Vectorizer Model
+└── requirements.txt        # Python Dependencies (for pipeline execution)
 ```
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### GitHub Pages (Live Site)
 The site is deployed automatically via GitHub Pages from the `main` branch. Simply push to `main` and the site updates.
@@ -71,7 +74,7 @@ If you need to regenerate the recommendation data from scratch:
 
 ---
 
-## 👨‍💻 Author
+## Author
 **K RAMA KRISHNA NARASIMHA CHOWDARY**  
 *Research Status: ONLINE*
 

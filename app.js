@@ -16,6 +16,11 @@ function getRandomKey() {
     return TMDB_API_KEYS[Math.floor(Math.random() * TMDB_API_KEYS.length)];
 }
 
+// ============ LOGGING CONTROL ============
+// Set to true during development to enable console output
+const DEBUG = true;
+const log = DEBUG ? console : { warn: () => { }, error: () => { } };
+
 // ============ GLOBAL STATE ============
 let moviesData = [];
 let recommendationsData = {};
@@ -27,7 +32,9 @@ let currentQueryTitle = '';
 document.addEventListener('DOMContentLoaded', () => {
     initTabs();
     initThemeToggle();
+    initSearch();
     loadAllData();
+    initSmartSidebar();
 });
 
 // ============ DARK / LIGHT MODE ============
@@ -102,11 +109,9 @@ async function loadAllData() {
         }
 
         dataLoaded = true;
-        initSearch();
-        updateLatency(0);
-
+        loadEvaluationData();
     } catch (err) {
-        console.error('Data load error:', err);
+        log.error('Data load error:', err);
         const area = document.getElementById('recommendations-area');
         if (area) {
             area.innerHTML = `
@@ -117,6 +122,25 @@ async function loadAllData() {
                     </p>
                 </div>`;
         }
+    }
+}
+
+async function loadEvaluationData() {
+    try {
+        const res = await fetch('data/evaluation.json');
+        if (!res.ok) return;
+        const data = await res.json();
+
+        data.forEach(item => {
+            const method = item.method.toLowerCase();
+            const precEl = document.getElementById(`${method}-precision`);
+            const latEl = document.getElementById(`${method}-latency`);
+
+            if (precEl) precEl.textContent = item.precision.toFixed(4);
+            if (latEl) latEl.textContent = item.latency.toFixed(2) + 'ms';
+        });
+    } catch (err) {
+        log.warn('Failed to load evaluation results:', err.message);
     }
 }
 
@@ -312,7 +336,7 @@ async function selectMovie(title) {
                     <div class="cosine-score">COSINE SIMILARITY: ${rec.score.toFixed(4)}</div>
                     ${rec.features && rec.features.length > 0 ? `
                     <div class="feature-breakdown" style="display:none;">
-                        <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#888; margin:6px 0 4px; text-transform:uppercase; letter-spacing:1px;">TOP SHARED FEATURES:</div>
+                        <div class="feature-header">TOP SHARED FEATURES:</div>
                         ${rec.features.map(f => `
                             <div class="feature-row">
                                 <span class="feat-name">${escapeHtml(f.f)}</span>
@@ -332,7 +356,8 @@ function buildFeatureBlock(score, features) {
     let html = `
         <div class="cosine-display" style="margin-top:15px;">
             <div class="cosine-score">COSINE SIMILARITY: ${score.toFixed(4)}</div>
-            <div style="font-family:'JetBrains Mono'; font-size:0.7rem; color:#888; margin:8px 0 4px; text-transform:uppercase; letter-spacing:1px;">TOP SHARED FEATURES:</div>`;
+            <div class="feature-breakdown">
+                <div class="feature-header">TOP SHARED FEATURES:</div>`;
 
     features.forEach(f => {
         html += `
@@ -342,7 +367,7 @@ function buildFeatureBlock(score, features) {
             </div>`;
     });
 
-    html += `</div>`;
+    html += `</div></div>`;
     return html;
 }
 
@@ -393,7 +418,7 @@ async function fetchPoster(movieId, title) {
             }
         }
     } catch (err) {
-        console.warn(`Poster fetch failed for ${title}:`, err.message);
+        log.warn(`Poster fetch failed for ${title}:`, err.message);
     }
     return PLACEHOLDER_POSTER;
 }
@@ -428,7 +453,7 @@ async function fetchMovieDetails(movieId) {
 
         return details;
     } catch (err) {
-        console.warn('Movie details fetch failed:', err.message);
+        log.warn('Movie details fetch failed:', err.message);
         return null;
     }
 }
@@ -461,7 +486,7 @@ async function fetchWikiSummary(title) {
             }
         }
     } catch (err) {
-        console.warn('Wiki fetch failed:', err.message);
+        log.warn('Wiki fetch failed:', err.message);
     }
     return 'No Wikipedia entry found.';
 }
@@ -500,7 +525,7 @@ function renderManifold() {
 
     // Check if Plotly is available
     if (typeof Plotly === 'undefined') {
-        console.warn('Plotly not loaded yet, retrying in 500ms...');
+        log.warn('Plotly not loaded yet, retrying in 500ms...');
         setTimeout(renderManifold, 500);
         return;
     }
@@ -508,7 +533,7 @@ function renderManifold() {
     // Ensure container is visible and has dimensions
     const rect = chartEl.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) {
-        console.warn('Manifold container not visible yet, retrying in 200ms...');
+        log.warn('Manifold container not visible yet, retrying in 200ms...');
         setTimeout(renderManifold, 200);
         return;
     }
@@ -579,4 +604,39 @@ function escapeHtml(str) {
 function escapeAttr(str) {
     if (!str) return '';
     return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+}
+
+// ============ SMART SIDEBAR ANIMATIONS ============
+let lastMeasuredSearchLatency = 0;
+
+function updateLatency(ms) {
+    lastMeasuredSearchLatency = ms;
+    const display = document.getElementById('latency-display');
+    if (display) {
+        display.textContent = ms.toFixed(2) + 'ms';
+        display.style.color = '#ffcc00';
+        setTimeout(() => { display.style.color = 'var(--accent-green)'; }, 1000);
+    }
+}
+
+function initSmartSidebar() {
+    const bars = document.querySelectorAll('.progress-fill');
+
+    const display = document.getElementById('latency-display');
+    if (display) {
+        display.textContent = '0.00ms';
+    }
+
+
+    // Subtle drift in the progress bar to show "active scanning"
+    let width = 100;
+    setInterval(() => {
+        const bar = document.getElementById('integrity-bar');
+        if (bar) {
+            width = 95 + Math.random() * 5;
+            bar.style.width = width + '%';
+        }
+    }, 5000);
+
+
 }

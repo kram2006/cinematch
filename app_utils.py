@@ -1,6 +1,5 @@
 import requests
 import wikipediaapi
-import streamlit as st
 import pandas as pd
 import numpy as np
 import logging
@@ -11,8 +10,6 @@ from config import WIKI_USER_AGENT, setup_logging, TMDB_API_KEYS
 # Setup logging
 logger = setup_logging()
 
-# Correct Caching Decorator
-@st.cache_data(ttl=3600)
 def get_wiki_data(movie_title):
     """
     Fetch Wikipedia summary for a movie.

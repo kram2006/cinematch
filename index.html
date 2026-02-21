@@ -8,7 +8,7 @@
     <meta name="description"
         content="CineMatch is a high-performance, content-based movie recommender system using Cosine Similarity, Explainable AI, and 3D Vector Manifold visualization.">
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>CM</text></svg>">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 </head>
@@ -21,35 +21,48 @@
         <div style="display:flex; align-items:center; gap:15px;">
             <button id="theme-toggle" class="theme-toggle-btn">MODE: DARK</button>
             <span
-                style="font-family:'JetBrains Mono', monospace; color:#888; font-size:0.75rem; letter-spacing:2px;">SYS.VER.4.0.2</span>
+                style="font-family:'JetBrains Mono', monospace; color:#888; font-size:0.75rem; letter-spacing:2px;"></span>
         </div>
     </div>
 
     <div class="app-layout">
         <!-- SIDEBAR -->
         <aside class="sidebar">
-            <div class="tech-header">SYSTEM CONSOLE</div>
-            <div style="height: 20px;"></div>
+            <div class="sidebar-top">
+                <div class="tech-header">SYSTEM CONSOLE</div>
+                <div style="height: 20px;"></div>
 
-            <div class="sidebar-metrics" id="sidebar-metrics">
-                <span class="sigma-badge">KERNEL</span><span style="color:#00ff41">ACTIVE</span><br>
-                <span class="sigma-badge">LATENCY</span><span style="color:#00ff41"
-                    id="latency-display">0.00ms</span><br>
-                <span class="sigma-badge">MEMORY</span><span style="color:#00ff41">OPTIMAL</span>
+                <div class="sidebar-metrics">
+                    <div class="sidebar-caption">CORE STATUS</div>
+                    <div class="metric-row">
+                        <span class="sigma-badge">KERNEL</span>
+                        <span class="status-active">READY</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="sigma-badge">LATENCY</span>
+                        <span id="latency-display" style="color:var(--accent-green);">0.00ms</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="sigma-badge">MEMORY</span>
+                        <span style="color:var(--accent-green);">OPTIMAL</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-divider"></div>
+
+                <div class="sidebar-info">
+                    SYSTEM: Handshake active. Monitoring high-dimensional similarity clusters.
+                </div>
             </div>
 
-            <div class="sidebar-divider"></div>
+            <div class="sidebar-bottom">
 
-            <div class="sidebar-info">
-                Execute 'Research Protocol' to access underlying vector mathematics.
-            </div>
+                <div class="sidebar-caption">DATA INTEGRITY CHECK</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="integrity-bar" style="width:100%"></div>
+                </div>
 
-            <div class="sidebar-caption">DATA INTEGRITY CHECK</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:100%"></div>
-            </div>
-
-            <pre class="sidebar-code">MODE: CONTENT_BASED
+                <pre class="sidebar-code">MODE: CONTENT_BASED
 DIMENSION: 5000
 ENGINE: COSINE_SIM</pre>
         </aside>
@@ -68,14 +81,14 @@ ENGINE: COSINE_SIM</pre>
             <!-- TAB 1: DISCOVERY PROTOCOL -->
             <section class="tab-panel active" id="tab-discovery">
                 <div class="hero-box">
-                    <h1
-                        style="font-family:'Outfit'; font-weight:900; font-size:4rem; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:-2px; position:relative; z-index:1;">
+                    <h1 class="hero-title">
                         Cine Match <span style="color:#ff3e3e">Primal</span>
                     </h1>
-                    <p
-                        style="color:#cbd5e0; font-family:'JetBrains Mono'; font-size:1rem; position:relative; z-index:1;">
-                        [INITIATING NEURAL HANDSHAKE...] PREDICTING CINEMATIC ALIGNMENT.
-                    </p>
+                    <div class="hero-subtitle-wrapper">
+                        <p class="hero-subtitle">
+                            [INITIATING NEURAL HANDSHAKE...] PREDICTING CINEMATIC ALIGNMENT.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="search-row">
@@ -107,7 +120,7 @@ ENGINE: COSINE_SIM</pre>
             <!-- TAB 3: PIPELINE ARCHITECTURE -->
             <section class="tab-panel" id="tab-pipeline">
                 <div class="tech-header">SYSTEM ARCHITECTURE COMPONENT FLOW</div>
-                <h3 style="color:#fff; font-family:'Outfit';">Research Pipeline Stages</h3>
+                <h3 class="section-heading">Research Pipeline Stages</h3>
                 <div class="pipeline-grid">
                     <div class="pipeline-col">
                         <div class="sigma-badge" style="border-color:#ffcc00; color:#ffcc00;">DATA INPUTS</div>
@@ -135,55 +148,49 @@ ENGINE: COSINE_SIM</pre>
                     </div>
                 </div>
 
-                <div class="tech-header" style="margin-top:32px;">PROCESSING STAGES</div>
-                <div class="pipeline-stages-grid">
-                    <div class="pipeline-stage-card">
+                <div class="tech-header" style="margin-top:40px;">PROCESSING STAGES</div>
+                <div class="pipeline-stages">
+                    <div class="stage-card" style="border-left-color:#ff3e3e;">
                         <div class="stage-number">01</div>
-                        <div class="stage-title">RAW DATA INGESTION</div>
-                        <div class="stage-desc">
-                            Parse TMDB 5000 CSV files. Extract structured fields: title, genres, keywords,
-                            cast, crew, and plot overview for each movie entry.
-                        </div>
+                        <div class="stage-title">DATA HARVESTING</div>
+                        <div class="stage-desc">Ingesting TMDB 5,000 dataset (Movies + Credits). Shape: (4803, 20) +
+                            (4803, 4) &rarr; Merged on Title.</div>
                     </div>
-                    <div class="pipeline-stage-card">
+                    <div class="stage-card" style="border-left-color:#ffcc00;">
                         <div class="stage-number">02</div>
-                        <div class="stage-title">TAG FUSION ENGINE</div>
-                        <div class="stage-desc">
-                            Concatenate genres, top-3 cast, director, and keywords into a unified text
-                            signature per movie. Apply stemming for normalization.
-                        </div>
+                        <div class="stage-title">FEATURE ENGINEERING</div>
+                        <div class="stage-desc">Extraction of high-signal metadata: Cast (Top 3), Director, Keywords,
+                            Genres. Semantic token creation.</div>
                     </div>
-                    <div class="pipeline-stage-card">
+                    <div class="stage-card" style="border-left-color:#00ff41;">
                         <div class="stage-number">03</div>
-                        <div class="stage-title">COUNT VECTORIZATION</div>
-                        <div class="stage-desc">
-                            Transform fused tags into a 5000-dimensional Bag-of-Words vector space
-                            using sklearn CountVectorizer with max_features=5000.
-                        </div>
+                        <div class="stage-title">FEATURE FUSION</div>
+                        <div class="stage-desc">Concatenation of all metadata into a weighted Tag Cloud. NLP
+                            normalization (Lowercasing, Stop-word removal).</div>
                     </div>
-                    <div class="pipeline-stage-card">
+                    <div class="stage-card" style="border-left-color:#38bdf8;">
                         <div class="stage-number">04</div>
-                        <div class="stage-title">COSINE SIMILARITY MATRIX</div>
-                        <div class="stage-desc">
-                            Compute pairwise cosine similarity across all 4806 movie vectors.
-                            Pre-sort top-N neighbors per movie for O(1) retrieval.
-                        </div>
+                        <div class="stage-title">VECTORIZATION</div>
+                        <div class="stage-desc">Unified String &rarr; 5,000-D Bag-of-Words Vector. Sklearn
+                            CountVectorizer(max_features=5000).</div>
                     </div>
-                    <div class="pipeline-stage-card">
+                    <div class="stage-card" style="border-left-color:#818cf8;">
                         <div class="stage-number">05</div>
-                        <div class="stage-title">SVD MANIFOLD PROJECTION</div>
-                        <div class="stage-desc">
-                            Apply Truncated SVD to reduce 5000-D vectors to 3 latent dimensions.
-                            Generates interactive 3D scatter coordinates for cluster visualization.
-                        </div>
+                        <div class="stage-title">MATHEMATICAL CORE</div>
+                        <div class="stage-desc">5000-D Space &rarr; (4806 &times; 4806) Symmetric Matrix. Cosine
+                            Similarity at float32 precision (90MB footprint).</div>
                     </div>
-                    <div class="pipeline-stage-card">
+                    <div class="stage-card" style="border-left-color:#c084fc;">
                         <div class="stage-number">06</div>
-                        <div class="stage-title">FEATURE ATTRIBUTION (XAI)</div>
-                        <div class="stage-desc">
-                            Element-wise product of query and recommendation vectors to identify
-                            top shared metadata features with contribution scores.
-                        </div>
+                        <div class="stage-title">MANIFOLD PROJECTION</div>
+                        <div class="stage-desc">4806-D Similarity Rows &rarr; 3D Latent Coordinates (X, Y, Z). Truncated
+                            SVD preserving global distance relationships.</div>
+                    </div>
+                    <div class="stage-card" style="border-left-color:#f472b6;">
+                        <div class="stage-number">07</div>
+                        <div class="stage-title">REAL-TIME INFERENCE</div>
+                        <div class="stage-desc">Input Title &rarr; Top 6 Correlated Movies. Multi-threaded API calls +
+                            Wikipedia Context + Feature Attribution.</div>
                     </div>
                 </div>
             </section>
@@ -210,10 +217,7 @@ ENGINE: COSINE_SIM</pre>
                                 <div class="metric-label">SPARSITY</div>
                                 <div class="metric-value">98.2%</div>
                             </div>
-                            <div class="metric-block">
-                                <div class="metric-label">INFERENCE</div>
-                                <div class="metric-value" id="metric-inference">0.00ms</div>
-                            </div>
+
                         </div>
                     </div>
 
@@ -307,7 +311,7 @@ ENGINE: COSINE_SIM</pre>
                 <div class="eval-metadata">
                     <h3
                         style="margin-top: 0; color: #ff3e3e; font-family: 'Outfit'; font-weight: 900; letter-spacing: 1px;">
-                        🔬 RESEARCH METADATA & METHODOLOGY</h3>
+                        RESEARCH METADATA & METHODOLOGY</h3>
 
                     <p style="color: #aaa; font-family: 'JetBrains Mono'; font-size: 0.9rem; line-height: 1.6;">
                         This module evaluates the performance of the Cine Match recommendation engine using a controlled
@@ -318,7 +322,7 @@ ENGINE: COSINE_SIM</pre>
 
                     <h4
                         style="color: #fff; margin-top: 25px; font-family: 'Outfit'; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">
-                        📂 UNDERLYING DATASET</h4>
+                        UNDERLYING DATASET</h4>
                     <p style="font-size: 0.85rem; color: #eee; font-family: 'JetBrains Mono';">
                         The evaluation runs on the <strong>TMDB 5000 Movie Dataset</strong>. Specifically, it utilizes
                         the <strong>'tags'</strong> feature
@@ -334,7 +338,7 @@ ENGINE: COSINE_SIM</pre>
 
                     <h4
                         style="color: #fff; margin-top: 25px; font-family: 'Outfit'; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">
-                        📏 CORE METRICS EXPLAINED</h4>
+                        CORE METRICS EXPLAINED</h4>
                     <div class="eval-metrics-grid">
                         <div class="eval-metric-card">
                             <strong style="color: #00ff41; font-family: 'Outfit'; font-size: 1rem;">1. PRECISION @ 10
@@ -367,7 +371,7 @@ ENGINE: COSINE_SIM</pre>
 
                     <h4
                         style="color: #fff; margin-top: 25px; font-family: 'Outfit'; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">
-                        🧪 EXPERIMENTAL STRATEGIES</h4>
+                        EXPERIMENTAL STRATEGIES</h4>
                     <ul style="font-size: 0.85rem; color: #ccc; font-family: 'JetBrains Mono'; line-height: 1.8;">
                         <li><strong style="color: #fff;">Bag-of-Words (BoW):</strong> Counts word frequencies. Fast but
                             ignores context.</li>
@@ -378,39 +382,45 @@ ENGINE: COSINE_SIM</pre>
                     </ul>
 
                     <div class="eval-results-section">
-                        <h4 style="color: #fff; font-family: 'Outfit'; margin-top:25px;">📊 BENCHMARK RESULTS</h4>
+                        <h4 style="color: #fff; font-family: 'Outfit'; margin-top:25px;">BENCHMARK RESULTS</h4>
                         <div class="eval-results-grid">
                             <div class="eval-result-card">
                                 <div class="eval-result-method">BOW</div>
                                 <div class="eval-result-metric">
                                     <span class="eval-result-label">Precision@10</span>
-                                    <span class="eval-result-value" style="color:#00ff41;">0.8520</span>
+                                    <span id="bow-precision" class="eval-result-value"
+                                        style="color:#00ff41;">0.8520</span>
                                 </div>
                                 <div class="eval-result-metric">
                                     <span class="eval-result-label">Latency</span>
-                                    <span class="eval-result-value" style="color:#00d2ff;">0.42ms</span>
+                                    <span id="bow-latency" class="eval-result-value"
+                                        style="color:#00d2ff;">0.42ms</span>
                                 </div>
                             </div>
                             <div class="eval-result-card">
                                 <div class="eval-result-method">TF-IDF</div>
                                 <div class="eval-result-metric">
                                     <span class="eval-result-label">Precision@10</span>
-                                    <span class="eval-result-value" style="color:#00ff41;">0.8640</span>
+                                    <span id="tfidf-precision" class="eval-result-value"
+                                        style="color:#00ff41;">0.8640</span>
                                 </div>
                                 <div class="eval-result-metric">
                                     <span class="eval-result-label">Latency</span>
-                                    <span class="eval-result-value" style="color:#00d2ff;">0.55ms</span>
+                                    <span id="tfidf-latency" class="eval-result-value"
+                                        style="color:#00d2ff;">0.55ms</span>
                                 </div>
                             </div>
                             <div class="eval-result-card">
                                 <div class="eval-result-method">SBERT</div>
                                 <div class="eval-result-metric">
                                     <span class="eval-result-label">Precision@10</span>
-                                    <span class="eval-result-value" style="color:#00ff41;">0.7800</span>
+                                    <span id="sbert-precision" class="eval-result-value"
+                                        style="color:#00ff41;">0.7800</span>
                                 </div>
                                 <div class="eval-result-metric">
                                     <span class="eval-result-label">Latency</span>
-                                    <span class="eval-result-value" style="color:#00d2ff;">12.30ms</span>
+                                    <span id="sbert-latency" class="eval-result-value"
+                                        style="color:#00d2ff;">12.30ms</span>
                                 </div>
                             </div>
                         </div>

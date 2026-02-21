@@ -1,0 +1,17 @@
+[
+  {
+    "method": "BOW",
+    "precision": 0.852,
+    "latency": 0.42
+  },
+  {
+    "method": "TF-IDF",
+    "precision": 0.864,
+    "latency": 0.55
+  },
+  {
+    "method": "SBERT",
+    "precision": 0.78,
+    "latency": 12.3
+  }
+]

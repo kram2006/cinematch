@@ -214,13 +214,13 @@ def save_artifacts(movies, similarity, cv):
         logger.info("Saving artifacts...")
         
         pickle.dump(movies, open('movie_list.pkl', 'wb'))
-        logger.info("✅ Saved movie_list.pkl")
+        logger.info("[SUCCESS] Saved movie_list.pkl")
         
         pickle.dump(similarity, open('similarity.pkl', 'wb'))
-        logger.info("✅ Saved similarity.pkl")
+        logger.info("[SUCCESS] Saved similarity.pkl")
         
         pickle.dump(cv, open('cv.pkl', 'wb'))
-        logger.info("✅ Saved cv.pkl")
+        logger.info("[SUCCESS] Saved cv.pkl")
         
         logger.info("All artifacts saved successfully!")
         

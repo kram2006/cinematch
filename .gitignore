@@ -1,7 +1,0 @@
-# CineMatch - Large binary files
-*.pkl
-*.log
-__pycache__/
-.streamlit/
-*.pyc
-.env

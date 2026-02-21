@@ -3,7 +3,6 @@ import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import time
-import streamlit as st
 import os
 import logging
 
@@ -108,7 +107,7 @@ def run_ablation_study(movies_df):
             results.append(metrics)
         except Exception as e:
             logger.error(f"Error evaluating {method}: {str(e)}")
-            st.error(f"Failed to evaluate {method.upper()}: {str(e)}")
+            print(f"[FAILURE] Failed to evaluate {method.upper()}: {str(e)}")
             
     # Try SBERT (may fail if not installed or too slow)
     try:
@@ -118,10 +117,10 @@ def run_ablation_study(movies_df):
         logger.info("SBERT evaluation completed successfully")
     except ImportError:
         logger.warning("SBERT not available (sentence-transformers not installed)")
-        st.warning("⚠️ SBERT evaluation skipped: sentence-transformers not installed")
+        print("SYSTEM: SBERT evaluation skipped: sentence-transformers not installed")
     except Exception as e:
         logger.error(f"SBERT evaluation failed: {str(e)}")
-        st.warning(f"⚠️ SBERT evaluation failed: {str(e)}")
+        print(f"SYSTEM: SBERT evaluation failed: {str(e)}")
     
     if not results:
         logger.error("No evaluation results generated")
@@ -144,25 +143,25 @@ if __name__ == "__main__":
     
     logging.basicConfig(level=logging.INFO)
     
-    print("🔬 Loading artifacts for evaluation...")
+    print("RESEARCH: Loading artifacts for evaluation...")
     try:
         movies = pickle.load(open('movie_list.pkl', 'rb'))
-        print(f"✅ Loaded {len(movies)} movies")
+        print(f"[SUCCESS] Loaded {len(movies)} movies")
         
-        print("🚀 Starting Ablation Study...")
+        print("Starting Ablation Study...")
         results = run_ablation_study(movies)
         
         if not results.empty:
             print("\n--- RESEARCH RESULTS ---")
             print(results[['method', 'precision@k', 'latency_ms']])
-            print("\n✅ Results saved to evaluation_results.csv")
+            print("\n[SUCCESS] Results saved to evaluation_results.csv")
         else:
-            print("❌ No results generated")
+            print("[FAILURE] No results generated")
             sys.exit(1)
             
     except FileNotFoundError:
-        print("❌ movie_list.pkl not found. Run preprocess.py first.")
+        print("[FAILURE] movie_list.pkl not found. Run preprocess.py first.")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Evaluation failed: {str(e)}")
+        print(f"[FAILURE] Evaluation failed: {str(e)}")
         sys.exit(1)
