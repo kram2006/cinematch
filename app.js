@@ -12,10 +12,6 @@ const TMDB_API_KEYS = [
 const POSTER_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 const PLACEHOLDER_POSTER = 'https://placehold.co/500x750/0e1117/ffffff.png?text=NO+IMAGE';
 
-function getRandomKey() {
-    return TMDB_API_KEYS[Math.floor(Math.random() * TMDB_API_KEYS.length)];
-}
-
 function createTimeoutSignal(ms) {
     if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
         return AbortSignal.timeout(ms);
