@@ -16,9 +16,13 @@ function createTimeoutSignal(ms) {
     if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
         return AbortSignal.timeout(ms);
     }
-    const controller = new AbortController();
-    setTimeout(() => controller.abort(), ms);
-    return controller.signal;
+    if (typeof AbortController !== 'undefined') {
+        const controller = new AbortController();
+        setTimeout(() => controller.abort(), ms);
+        return controller.signal;
+    }
+    // AbortSignal.timeout and AbortController are not available; disable timeout
+    return undefined;
 }
 
 // ============ LOGGING CONTROL ============
