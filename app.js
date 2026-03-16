@@ -9,11 +9,20 @@ const TMDB_API_KEYS = [
     '8265bd1679663a7ea12ac168da84d2e8',
     'e99b89ffb15842de8b76fc35ae80955e'
 ];
-const POSTER_BASE_URL = 'https://image.tmdb.org/t/p/w500/';
+const POSTER_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 const PLACEHOLDER_POSTER = 'https://placehold.co/500x750/0e1117/ffffff.png?text=NO+IMAGE';
 
 function getRandomKey() {
     return TMDB_API_KEYS[Math.floor(Math.random() * TMDB_API_KEYS.length)];
+}
+
+function createTimeoutSignal(ms) {
+    if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
+        return AbortSignal.timeout(ms);
+    }
+    const controller = new AbortController();
+    setTimeout(() => controller.abort(), ms);
+    return controller.signal;
 }
 
 // ============ LOGGING CONTROL ============
@@ -395,74 +404,79 @@ function navigateToMovie(title) {
 
 // ============ TMDB API ============
 async function fetchPoster(movieId, title) {
-    const key = getRandomKey();
-    try {
-        const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}`, {
-            signal: AbortSignal.timeout(4000)
-        });
-        if (res.ok) {
-            const data = await res.json();
-            if (data.poster_path) {
-                return `${POSTER_BASE_URL}${data.poster_path}`;
+    for (const key of TMDB_API_KEYS) {
+        try {
+            const res = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}`, {
+                signal: createTimeoutSignal(4000)
+            });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.poster_path) {
+                    return `${POSTER_BASE_URL}${data.poster_path}`;
+                }
             }
-        }
+            if (res.status === 401 || res.status === 429) continue;
 
-        const searchRes = await fetch(
-            `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${encodeURIComponent(title)}`,
-            { signal: AbortSignal.timeout(4000) }
-        );
-        if (searchRes.ok) {
-            const searchData = await searchRes.json();
-            if (searchData.results && searchData.results.length > 0 && searchData.results[0].poster_path) {
-                return `${POSTER_BASE_URL}${searchData.results[0].poster_path}`;
+            const searchRes = await fetch(
+                `https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${encodeURIComponent(title)}`,
+                { signal: createTimeoutSignal(4000) }
+            );
+            if (searchRes.ok) {
+                const searchData = await searchRes.json();
+                if (searchData.results && searchData.results.length > 0 && searchData.results[0].poster_path) {
+                    return `${POSTER_BASE_URL}${searchData.results[0].poster_path}`;
+                }
             }
+            if (searchRes.status === 401 || searchRes.status === 429) continue;
+        } catch (err) {
+            log.warn(`Poster fetch failed for ${title}:`, err.message);
         }
-    } catch (err) {
-        log.warn(`Poster fetch failed for ${title}:`, err.message);
     }
     return PLACEHOLDER_POSTER;
 }
 
 async function fetchMovieDetails(movieId) {
-    const key = getRandomKey();
-    try {
-        const res = await fetch(
-            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&append_to_response=videos`,
-            { signal: AbortSignal.timeout(5000) }
-        );
-        if (!res.ok) return null;
+    for (const key of TMDB_API_KEYS) {
+        try {
+            const res = await fetch(
+                `https://api.themoviedb.org/3/movie/${movieId}?api_key=${key}&append_to_response=videos`,
+                { signal: createTimeoutSignal(5000) }
+            );
+            if (res.status === 401 || res.status === 429) continue;
+            if (!res.ok) return null;
 
-        const data = await res.json();
-        const details = {
-            rating: data.vote_average || 'N/A',
-            release_date: data.release_date || 'N/A',
-            runtime: `${data.runtime || 0} min`,
-            overview: data.overview || '',
-            trailer: null,
-            trailerKey: null
-        };
+            const data = await res.json();
+            const details = {
+                rating: data.vote_average || 'N/A',
+                release_date: data.release_date || 'N/A',
+                runtime: `${data.runtime || 0} min`,
+                overview: data.overview || '',
+                trailer: null,
+                trailerKey: null
+            };
 
-        const videos = (data.videos && data.videos.results) || [];
-        for (const video of videos) {
-            if (video.type === 'Trailer' && video.site === 'YouTube') {
-                details.trailer = `https://www.youtube.com/watch?v=${video.key}`;
-                details.trailerKey = video.key;
-                break;
+            const videos = (data.videos && data.videos.results) || [];
+            for (const video of videos) {
+                if (video.type === 'Trailer' && video.site === 'YouTube') {
+                    details.trailer = `https://www.youtube.com/watch?v=${video.key}`;
+                    details.trailerKey = video.key;
+                    break;
+                }
             }
-        }
 
-        return details;
-    } catch (err) {
-        log.warn('Movie details fetch failed:', err.message);
-        return null;
+            return details;
+        } catch (err) {
+            log.warn('Movie details fetch failed:', err.message);
+        }
     }
+    return null;
 }
 
 async function fetchWikiSummary(title) {
     try {
         const res = await fetch(
             `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`,
-            { signal: AbortSignal.timeout(4000) }
+            { signal: createTimeoutSignal(4000) }
         );
         if (res.ok) {
             const data = await res.json();
@@ -475,7 +489,7 @@ async function fetchWikiSummary(title) {
 
         const res2 = await fetch(
             `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title + ' (film)')}`,
-            { signal: AbortSignal.timeout(4000) }
+            { signal: createTimeoutSignal(4000) }
         );
         if (res2.ok) {
             const data2 = await res2.json();
@@ -506,13 +520,7 @@ function analyzeVibe(text) {
 }
 
 // ============ LATENCY DISPLAY ============
-function updateLatency(ms) {
-    const display = document.getElementById('latency-display');
-    const metricInf = document.getElementById('metric-inference');
-    const formatted = ms.toFixed(2) + 'ms';
-    if (display) display.textContent = formatted;
-    if (metricInf) metricInf.textContent = formatted;
-}
+// (updateLatency is defined in the Smart Sidebar section below)
 
 // ============ 3D MANIFOLD (Plotly.js) ============
 function renderManifold() {

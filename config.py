@@ -27,7 +27,7 @@ except ImportError:
     print("[INFO] python-dotenv not installed. Using system environment variables only.")
 
 # API Configuration
-POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500/"
+POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
 # Wikipedia Configuration
 WIKI_USER_AGENT = 'CineMatch/2.0 (Educational Research Project)'
